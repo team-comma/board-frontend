@@ -1,5 +1,5 @@
 {
-  "name": "feed",
+  "name": "board-frontend",
   "scripts": {
     "postinstall": "husky install",
     "dev": "next dev",
