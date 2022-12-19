@@ -1,5 +1,5 @@
 import { styled } from 'stitches.config';
-import { sizes } from 'src/styles';
+import { colors, sizes } from 'src/styles';
 
 export const AuthLayout = styled('div', {
   width: '100%',
@@ -51,6 +51,8 @@ export const AuthBottom = styled('div', {
 export const AuthLink = styled('a', {
   fontSize: sizes.fontSizes.x3,
   fontWeight: 'bold',
+  textDecorationLine: 'none',
+  color: 'inherit',
   variants: {
     marginTop: {
       x3: { marginTop: sizes.fontSizes.x3 },
@@ -59,4 +61,9 @@ export const AuthLink = styled('a', {
       x1: { marginLeft: sizes.space.x1 },
     },
   },
+});
+
+export const AuthErrorMessage = styled('span', {
+  fontSize: sizes.fontSizes.x3,
+  color: colors.red100,
 });
