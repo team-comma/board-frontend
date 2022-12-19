@@ -1,16 +1,17 @@
-import React from 'next';
-import type * as Stitches from '@stitches/react';
+import React from 'react';
 import * as S from './styled';
 
-interface InputProps extends Stitches.VariantProps<typeof S.InputElements> {
-  label?: string;
+interface InputProps extends React.ComponentProps<typeof S.InputElements> {
+  label: string;
 }
 
-export const Input = ({ label, ...props }: InputProps) => {
-  return (
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ label, ...props }: InputProps, ref) => (
     <>
       <S.InputLabel>{label && <div>{label}</div>}</S.InputLabel>
-      <S.InputElements {...props} />
+      <S.InputElements {...props} ref={ref} />
     </>
-  );
-};
+  )
+);
+
+Input.displayName = 'Input';
