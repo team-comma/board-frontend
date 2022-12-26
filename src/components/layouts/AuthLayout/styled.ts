@@ -65,5 +65,5 @@ export const AuthLink = styled('a', {
 
 export const AuthErrorMessage = styled('span', {
   fontSize: sizes.fontSizes.x3,
-  color: colors.red100,
+  color: colors.red[100],
 });
