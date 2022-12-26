@@ -4,7 +4,7 @@ import { Input, Button } from 'src/components';
 import { useForm } from 'react-hook-form';
 import * as S from './styled';
 
-type HookFormTypes = {
+type LoginFormTypes = {
   username: string;
   password: string;
 };
@@ -14,9 +14,9 @@ export const LoginContainer = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<HookFormTypes>();
+  } = useForm<LoginFormTypes>();
 
-  const onSubmit = (props: HookFormTypes) => {
+  const onSubmit = (props: LoginFormTypes) => {
     console.log(props);
   };
 
