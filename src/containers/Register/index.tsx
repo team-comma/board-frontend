@@ -3,7 +3,7 @@ import { AuthLayout, Auth, Button, Input } from 'src/components';
 import { useForm } from 'react-hook-form';
 import * as S from './styled';
 
-interface HookFormTypes {
+interface RegisterFormTypes {
   id: string;
   password: string;
   confirmPassword: string;
@@ -18,9 +18,9 @@ export const RegisterContainer = () => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<HookFormTypes>();
+  } = useForm<RegisterFormTypes>();
 
-  const onSubmit = (props: HookFormTypes) => {
+  const onSubmit = (props: RegisterFormTypes) => {
     console.log(props);
   };
 
