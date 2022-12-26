@@ -53,7 +53,7 @@ export const LoginContainer = () => {
           })}
         />
         <Auth.ErrorMessage>{errors.password?.message}</Auth.ErrorMessage>
-        <Auth.Bottom display="flex" justifyContent="spaceBetween">
+        <Auth.Bottom flex="true" spaceBetween="true">
           <Auth.Link href="/auth/register">회원가입/계정찾기</Auth.Link>
           <Button
             width="x16"

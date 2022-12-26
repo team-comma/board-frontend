@@ -115,7 +115,7 @@ export const RegisterContainer = () => {
         </S.FlexDirectionRow>
         <Auth.ErrorMessage>{errors.phoneNum?.message}</Auth.ErrorMessage>
       </Auth.Form>
-      <Auth.Bottom display="flex" flexDirection="row">
+      <Auth.Bottom flex="true" row="true">
         <S.HaveAccount>이미 아이디가 있으신가요?</S.HaveAccount>
         <Auth.Link href="/auth/login" marginTop="x3" marginLeft="x1">
           로그인
