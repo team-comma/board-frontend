@@ -20,15 +20,15 @@ export const InputElements = styled('input', {
   padding: sizes.space.x2,
   borderRadius: sizes.space.x2,
   outline: 'none',
-  border: `1px solid ${colors.gray100}`,
+  border: `1px solid ${colors.gray[100]}`,
   '&:focus': {
-    borderColor: colors.mint100,
+    borderColor: colors.mint[100],
   },
   '&:hover': {
-    borderColor: colors.mint100,
+    borderColor: colors.mint[100],
     transition: 'all 0.3s ease-in-out',
   },
   '&::placeholder': {
-    color: colors.gray100,
+    color: colors.gray[100],
   },
 });

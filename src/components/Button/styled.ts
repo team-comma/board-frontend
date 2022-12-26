@@ -6,12 +6,12 @@ export const ButtonElement = styled('button', {
   variants: {
     bgColor: {
       white: { backgroundColor: 'White' },
-      mint: { backgroundColor: colors.mint100 },
-      gray: { backgroundColor: colors.gray100 },
+      mint: { backgroundColor: colors.mint[100] },
+      gray: { backgroundColor: colors.gray[100] },
     },
     color: {
       white: { color: 'White' },
-      mint: { color: colors.mint100 },
+      mint: { color: colors.mint[100] },
     },
     width: {
       x16: { width: sizes.space.x16 },
@@ -30,7 +30,7 @@ export const ButtonElement = styled('button', {
     },
     border: {
       none: { border: 'none' },
-      mint: { border: `2px solid ${colors.mint100}` },
+      mint: { border: `2px solid ${colors.mint[100]}` },
     },
     fontWeight: {
       bold: { fontWeight: 'bold' },
@@ -42,7 +42,7 @@ export const ButtonElement = styled('button', {
     hover: {
       mintHover: {
         '&:hover': {
-          backgroundColor: colors.mint200,
+          backgroundColor: colors.mint[200],
           transition: 'all 0.3s ease-in-out',
         },
       },
