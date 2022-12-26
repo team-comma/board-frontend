@@ -1,7 +1,13 @@
 export const colors = {
-  mint100: '#1BC8FF',
-  mint200: '#1BABCF',
-  gray100: '#E6E6E6',
-  gray200: '#BDBDBD',
-  red100: '#FF3300',
+  mint: {
+    100: '#1BC8FF',
+    200: '#1BABCF',
+  },
+  gray: {
+    100: '#E6E6E6',
+    200: '#BDBDBD',
+  },
+  red: {
+    100: '#FF3300',
+  },
 };
