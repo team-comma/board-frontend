@@ -33,17 +33,17 @@ export const AuthForm = styled('form', {
 export const AuthBottom = styled('div', {
   marginTop: sizes.space.x9,
   variants: {
-    display: {
-      flex: { display: 'flex' },
+    flex: {
+      true: { display: 'flex' },
     },
-    flexDirection: {
-      row: { flexDirection: 'row' },
+    row: {
+      true: { flexDirection: 'row' },
     },
-    justifyContent: {
-      spaceBetween: { justifyContent: 'space-between' },
+    spaceBetween: {
+      true: { justifyContent: 'space-between' },
     },
-    alignItem: {
-      center: { alignContent: 'center' },
+    alignCenter: {
+      true: { alignContent: 'center' },
     },
   },
 });
