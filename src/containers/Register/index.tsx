@@ -1,7 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'next';
 import { AuthLayout, Auth, Button, Input } from 'src/components';
 import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify';
+import { injectStyle } from 'react-toastify/dist/inject-style';
 import * as S from './styled';
+import { useRouter } from 'next/router';
+import { APIErrorResponse, instance } from 'src/api';
 
 interface RegisterFormTypes {
   id: string;
@@ -20,8 +25,39 @@ export const RegisterContainer = () => {
     watch,
   } = useForm<RegisterFormTypes>();
 
+  const router = useRouter();
+
+  if (typeof window !== 'undefined') {
+    injectStyle();
+  }
+
   const onSubmit = (props: RegisterFormTypes) => {
-    console.log(props);
+    const { id, password, name, nickname, phoneNum } = props;
+
+    // 이거 되면 react-query 도입 -> 해보면 좋을거 같음
+    try {
+      instance.post('/register/', {
+        username: id,
+        password: password,
+        name: name,
+        nickname: nickname,
+        phone_number: phoneNum,
+        photo: null,
+      });
+      toast.success('회원가입이 완료되었습니다.', {
+        position: toast.POSITION.TOP_CENTER,
+        theme: 'light',
+        autoClose: 2000,
+      });
+      router.push('/login');
+    } catch (error: APIErrorResponse | unknown) {
+      console.log(error);
+      toast.error('회원가입에 실패했습니다.', {
+        position: toast.POSITION.TOP_CENTER,
+        theme: 'light',
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
@@ -32,15 +68,20 @@ export const RegisterContainer = () => {
           한세사이버보안고등학교 · 게시판 프로젝트
         </Auth.Description>
       </Auth.Header>
+      <ToastContainer />
       <Auth.Form onSubmit={handleSubmit(onSubmit)}>
         <Input
           label="아이디"
           type="text"
           {...register('id', {
-            required: '올바른 아이디 또는 비밀번호를 입력해주세요.',
+            required: '아이디를 입력해주세요.',
             minLength: {
               value: 8,
               message: '아이디는 8글자 이상이여야 합니다.',
+            },
+            pattern: {
+              value: /^[a-zA-Z0-9]*$/,
+              message: '아이디는 영문과 숫자만 사용할 수 있습니다.',
             },
           })}
         />
@@ -52,7 +93,13 @@ export const RegisterContainer = () => {
             required: '비밀번호를 입력해주세요.',
             minLength: {
               value: 8,
-              message: '비밀번호는 8자 이상이여야 합니다,',
+              message: '비밀번호는 8자 이상이여야 합니다.',
+            },
+            pattern: {
+              value:
+                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
+              message:
+                '비밀번호는 영문과 숫자, 특수문자를 조합해서 사용해야합니다.',
             },
           })}
         />
@@ -75,6 +122,10 @@ export const RegisterContainer = () => {
           type="text"
           {...register('name', {
             required: '이름을 입력해주세요.',
+            pattern: {
+              value: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/,
+              message: '이름에는 한글만 입력할 수 있습니다.',
+            },
           })}
         />
         <Auth.ErrorMessage>{errors.name?.message}</Auth.ErrorMessage>
@@ -95,7 +146,7 @@ export const RegisterContainer = () => {
             {...register('phoneNum', {
               required: '전화번호를 입력해주세요.',
               pattern: {
-                value: /01[0-1, 7][0-9]{7,8}$/,
+                value: /01[0-1, 7][0-9]{8}$/,
                 message: '전화번호가 잘못되었습니다. 다시 입력해주세요.',
               },
             })}
