@@ -14,7 +14,6 @@ interface RegisterFormTypes {
   confirmPassword: string;
   name: string;
   nickname: string;
-  phoneNum: string;
 }
 
 export const RegisterContainer = () => {
@@ -32,7 +31,7 @@ export const RegisterContainer = () => {
   }
 
   const onSubmit = async (props: RegisterFormTypes) => {
-    const { id, password, name, nickname, phoneNum } = props;
+    const { id, password, name, nickname } = props;
 
     // 이거 되면 react-query 도입 -> 해보면 좋을거 같음
     try {
@@ -41,7 +40,6 @@ export const RegisterContainer = () => {
         password: password,
         name: name,
         nickname: nickname,
-        phone_number: phoneNum,
         photo: null,
       });
       setTimeout(() => {
@@ -139,33 +137,6 @@ export const RegisterContainer = () => {
             required: '닉네임을 입력해주세요.',
           })}
         />
-        <S.FlexDirectionRow>
-          <Input
-            label="전화번호"
-            width="x80"
-            marginTop="x2"
-            type="phone"
-            {...register('phoneNum', {
-              required: '전화번호를 입력해주세요.',
-              pattern: {
-                value: /01[0-1, 7][0-9]{8}$/,
-                message: '전화번호가 잘못되었습니다. 다시 입력해주세요.',
-              },
-            })}
-          />
-          <Button
-            bgColor="white"
-            color="mint"
-            fontWeight="bold"
-            width="x28"
-            height="x11"
-            borderRadius="x2"
-            border="mint"
-            marginLeft="x3"
-          >
-            인증번호 받기
-          </Button>
-        </S.FlexDirectionRow>
       </Auth.Form>
       <Auth.Bottom flex="true" row="true">
         <S.HaveAccount>이미 아이디가 있으신가요?</S.HaveAccount>
