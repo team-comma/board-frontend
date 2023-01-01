@@ -31,12 +31,12 @@ export const RegisterContainer = () => {
     injectStyle();
   }
 
-  const onSubmit = (props: RegisterFormTypes) => {
+  const onSubmit = async (props: RegisterFormTypes) => {
     const { id, password, name, nickname, phoneNum } = props;
 
     // 이거 되면 react-query 도입 -> 해보면 좋을거 같음
     try {
-      instance.post('/register/', {
+      await instance.post('/register/', {
         username: id,
         password: password,
         name: name,
@@ -44,16 +44,18 @@ export const RegisterContainer = () => {
         phone_number: phoneNum,
         photo: null,
       });
-      toast.success('회원가입이 완료되었습니다.', {
-        position: toast.POSITION.TOP_CENTER,
-        theme: 'light',
-        autoClose: 2000,
-      });
+      setTimeout(() => {
+        toast.success('회원가입이 완료되었습니다.', {
+          position: toast.POSITION.TOP_RIGHT,
+          theme: 'light',
+          autoClose: 2000,
+        });
+      }, 1000);
       router.push('/login');
     } catch (error: APIErrorResponse | unknown) {
       console.log(error);
       toast.error('회원가입에 실패했습니다.', {
-        position: toast.POSITION.TOP_CENTER,
+        position: toast.POSITION.TOP_RIGHT,
         theme: 'light',
         autoClose: 3000,
       });
@@ -182,6 +184,7 @@ export const RegisterContainer = () => {
           marginLeft="x37"
           hover="mintHover"
           type="submit"
+          onClick={handleSubmit(onSubmit)}
         >
           회원가입
         </Button>
