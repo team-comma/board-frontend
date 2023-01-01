@@ -5,7 +5,8 @@ export const AuthLayout = styled('div', {
   width: '100%',
   height: '100vh',
   margin: 'auto',
-  padding: '80px 720px',
+  padding: '60px 0px',
+  maxWidth: '450px',
 });
 
 export const AuthHeader = styled('div', {
