@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'next';
 import { Auth, AuthLayout } from 'src/components/layouts';
 import { Input, Button } from 'src/components';
@@ -27,7 +28,7 @@ export const LoginContainer = () => {
   }
 
   const onSubmit = async (props: LoginFormTypes) => {
-    const { id, password } = this.props;
+    const { id, password } = props;
 
     try {
       await instance.post('/login/', {
