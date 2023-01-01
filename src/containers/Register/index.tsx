@@ -75,6 +75,7 @@ export const RegisterContainer = () => {
         <Input
           label="아이디"
           type="text"
+          error={errors.id?.message}
           {...register('id', {
             required: '아이디를 입력해주세요.',
             minLength: {
@@ -87,10 +88,10 @@ export const RegisterContainer = () => {
             },
           })}
         />
-        <Auth.ErrorMessage>{errors.id?.message}</Auth.ErrorMessage>
         <Input
           label="비밀번호"
           type="password"
+          error={errors.password?.message}
           {...register('password', {
             required: '비밀번호를 입력해주세요.',
             minLength: {
@@ -105,10 +106,10 @@ export const RegisterContainer = () => {
             },
           })}
         />
-        <Auth.ErrorMessage>{errors.password?.message}</Auth.ErrorMessage>
         <Input
           label="비밀번호 확인"
           type="password"
+          error={errors.confirmPassword?.message}
           {...register('confirmPassword', {
             required: '비밀번호 확인을 입력해주세요.',
             validate: (value: string) => {
@@ -118,10 +119,10 @@ export const RegisterContainer = () => {
             },
           })}
         />
-        <Auth.ErrorMessage>{errors.confirmPassword?.message}</Auth.ErrorMessage>
         <Input
           label="이름"
           type="text"
+          error={errors.name?.message}
           {...register('name', {
             required: '이름을 입력해주세요.',
             pattern: {
@@ -130,15 +131,14 @@ export const RegisterContainer = () => {
             },
           })}
         />
-        <Auth.ErrorMessage>{errors.name?.message}</Auth.ErrorMessage>
         <Input
           label="닉네임"
           type="text"
+          error={errors.nickname?.message}
           {...register('nickname', {
             required: '닉네임을 입력해주세요.',
           })}
         />
-        <Auth.ErrorMessage>{errors.nickname?.message}</Auth.ErrorMessage>
         <S.FlexDirectionRow>
           <Input
             label="전화번호"
@@ -166,7 +166,6 @@ export const RegisterContainer = () => {
             인증번호 받기
           </Button>
         </S.FlexDirectionRow>
-        <Auth.ErrorMessage>{errors.phoneNum?.message}</Auth.ErrorMessage>
       </Auth.Form>
       <Auth.Bottom flex="true" row="true">
         <S.HaveAccount>이미 아이디가 있으신가요?</S.HaveAccount>
