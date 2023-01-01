@@ -7,6 +7,11 @@ export const InputLabel = styled('label', {
   paddingBottom: sizes.space.x2,
 });
 
+export const ErrorMessage = styled('span', {
+  fontSize: sizes.fontSizes.x3,
+  color: colors.red[100],
+});
+
 export const InputElements = styled('input', {
   variants: {
     width: {
