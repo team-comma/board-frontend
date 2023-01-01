@@ -21,5 +21,4 @@ export const Auth = Object.assign(AuthLayout, {
   Form: S.AuthForm,
   Bottom: S.AuthBottom,
   Link: S.AuthLink,
-  ErrorMessage: S.AuthErrorMessage,
 });
