@@ -2,12 +2,16 @@ import React from 'next';
 import { Auth, AuthLayout } from 'src/components/layouts';
 import { Input, Button } from 'src/components';
 import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify';
+import { injectStyle } from 'react-toastify/dist/inject-style';
 import * as S from './styled';
+import { useRouter } from 'next/router';
+import { APIErrorResponse, instance } from 'src/api';
 
-type LoginFormTypes = {
-  username: string;
+interface LoginFormTypes {
+  id: string;
   password: string;
-};
+}
 
 export const LoginContainer = () => {
   const {
@@ -16,8 +20,34 @@ export const LoginContainer = () => {
     formState: { errors },
   } = useForm<LoginFormTypes>();
 
-  const onSubmit = (props: LoginFormTypes) => {
-    console.log(props);
+  const router = useRouter();
+
+  if (typeof window !== 'undefined') {
+    injectStyle();
+  }
+
+  const onSubmit = async (props: LoginFormTypes) => {
+    const { id, password } = this.props;
+
+    try {
+      await instance.post('/login/', {
+        username: id,
+        password: password,
+      });
+      toast.success('로그인 성공!', {
+        position: toast.POSITION.TOP_CENTER,
+        theme: 'light',
+        autoClose: 2000,
+      });
+      router.push('/');
+    } catch (error: APIErrorResponse | unknown) {
+      console.log(error);
+      toast.error('로그인 실패!', {
+        position: toast.POSITION.TOP_CENTER,
+        theme: 'light',
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
@@ -32,7 +62,8 @@ export const LoginContainer = () => {
         <Input
           type="text"
           label="아이디"
-          {...register('username', {
+          error={errors.id?.message}
+          {...register('id', {
             required: '올바른 아이디 또는 비밀번호를 입력해주세요.',
             minLength: {
               value: 8,
@@ -40,10 +71,10 @@ export const LoginContainer = () => {
             },
           })}
         />
-        <Auth.ErrorMessage>{errors.username?.message}</Auth.ErrorMessage>
         <Input
           type="password"
           label="비밀번호"
+          error={errors.password?.message}
           {...register('password', {
             required: '올바른 아이디 또는 비밀번호를 입력해주세요.',
             minLength: {
@@ -52,7 +83,6 @@ export const LoginContainer = () => {
             },
           })}
         />
-        <Auth.ErrorMessage>{errors.password?.message}</Auth.ErrorMessage>
         <Auth.Bottom flex="true" spaceBetween="true">
           <Auth.Link href="/auth/register">회원가입/계정찾기</Auth.Link>
           <Button
