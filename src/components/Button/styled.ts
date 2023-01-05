@@ -18,10 +18,12 @@ export const ButtonElement = styled('button', {
       x20: { width: sizes.space.x20 },
       x28: { width: sizes.space.x28 },
       x80: { width: sizes.space.x80 },
+      x105: { width: sizes.space.x105 },
     },
     height: {
       x10: { height: sizes.space.x10 },
       x11: { height: sizes.space.x11 },
+      x13: { height: sizes.space.x13 },
     },
     borderRadius: {
       x1: { borderRadius: sizes.space.x1 },
@@ -34,6 +36,9 @@ export const ButtonElement = styled('button', {
     },
     fontWeight: {
       bold: { fontWeight: 'bold' },
+    },
+    fontSize: {
+      x4: { fontSize: sizes.fontSizes.x4 },
     },
     marginLeft: {
       x3: { marginLeft: sizes.space.x3 },
