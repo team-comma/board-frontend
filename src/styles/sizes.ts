@@ -13,6 +13,7 @@ export const sizes = {
     x10: '40px',
     x11: '44px',
     x12: '48px',
+    x13: '52px',
     x14: '56px',
     x15: '60px',
     x16: '64px',
@@ -29,6 +30,7 @@ export const sizes = {
     x60: '240px',
     x70: '280px',
     x80: '320px',
+    x105: '425px',
   },
   fontSizes: {
     x1: '4px',
