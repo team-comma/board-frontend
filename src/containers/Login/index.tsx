@@ -5,9 +5,10 @@ import { Input, Button } from 'src/components';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
-import * as S from './styled';
 import { useRouter } from 'next/router';
 import { APIErrorResponse, instance } from 'src/api';
+import { useCookies } from 'react-cookie';
+import * as S from './styled';
 
 interface LoginFormTypes {
   id: string;
@@ -15,6 +16,11 @@ interface LoginFormTypes {
 }
 
 export const LoginContainer = () => {
+  const [, setCookie] = useCookies(['Login_cookies']);
+
+  const expireDate = new Date();
+  expireDate.setMinutes(expireDate.getMinutes() + 10);
+
   const {
     register,
     handleSubmit,
@@ -29,22 +35,32 @@ export const LoginContainer = () => {
 
   const onSubmit = async (props: LoginFormTypes) => {
     const { id, password } = props;
-
     try {
-      await instance.post('/login/', {
+      const useLogin = await instance.post('/login/', {
         username: id,
         password: password,
       });
       toast.success('로그인 성공!', {
-        position: toast.POSITION.TOP_CENTER,
+        position: toast.POSITION.TOP_RIGHT,
         theme: 'light',
         autoClose: 2000,
       });
+      setCookie(
+        'Login_cookies',
+        {
+          refresh: useLogin.data.result.refresh,
+        },
+        {
+          path: '/',
+          expires: expireDate,
+          secure: true,
+        }
+      );
       router.push('/');
     } catch (error: APIErrorResponse | unknown) {
       console.log(error);
       toast.error('로그인 실패!', {
-        position: toast.POSITION.TOP_CENTER,
+        position: toast.POSITION.TOP_RIGHT,
         theme: 'light',
         autoClose: 3000,
       });
@@ -59,6 +75,7 @@ export const LoginContainer = () => {
           한세사이버보안고등학교 • 게시판 프로젝트
         </Auth.Description>
       </Auth.Header>
+      <ToastContainer />
       <Auth.Form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type="text"
@@ -94,6 +111,7 @@ export const LoginContainer = () => {
             fontWeight="bold"
             border="none"
             borderRadius="x2"
+            onClick={handleSubmit(onSubmit)}
           >
             로그인
           </Button>
