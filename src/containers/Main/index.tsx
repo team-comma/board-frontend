@@ -29,18 +29,20 @@ export const MainContainer = () => {
       </S.InputContainer>
       <S.MainContentLayout>.</S.MainContentLayout>
       <S.ContentGenerateLayout>
-        <Button
-          bgColor="mint"
-          color="white"
-          width="x105"
-          height="x13"
-          borderRadius="x14"
-          border="none"
-          fontSize="x4"
-          hover="mintHover"
-        >
-          게시물 생성하기
-        </Button>
+        <Link href="/create-post">
+          <Button
+            bgColor="mint"
+            color="white"
+            width="x105"
+            height="x13"
+            borderRadius="x14"
+            border="none"
+            fontSize="x4"
+            hover="mintHover"
+          >
+            게시물 생성하기
+          </Button>
+        </Link>
       </S.ContentGenerateLayout>
     </S.MainLayout>
   );

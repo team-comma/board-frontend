@@ -4,7 +4,7 @@ export const MainLayout = styled('div', {
   width: '100%',
   height: '100%',
   margin: 'auto',
-  padding: '10px 7px',
+  padding: '10px 0',
   maxWidth: '450px',
 });
 
