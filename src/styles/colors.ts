@@ -10,4 +10,7 @@ export const colors = {
   red: {
     100: '#FF3300',
   },
+  skyblue: {
+    100: '#1bc8ff',
+  },
 };
