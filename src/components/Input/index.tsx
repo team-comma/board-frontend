@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './styled';
 
 interface InputProps extends React.ComponentProps<typeof S.InputElements> {
-  label: string;
+  label?: string;
   error?: string;
 }
 
